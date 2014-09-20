@@ -1,0 +1,16 @@
+{
+    "contents" : "#Loads the necessary libraries for the program\nlibrary('shiny')\nlibrary('devtools')\nlibrary('quantmod')\nlibrary('ggplot2')\nlibrary('shinyapps')\nlibrary('reshape2')\n\n#------------------------------------- Shiny App UI Starts Here ----------------------------------------#\n\nshinyUI(fluidPage(\n  titlePanel(\"Stock Price Graphs\"),\n  \n  sidebarLayout(\n    sidebarPanel(\n      helpText(\"The following application lets allows you graphically to investigate three different stock\nprices - just input the a ticker symbol from Yahoo Finance in one of the three boxes below. You can also \ncustomize the time period in the date-input boxes, and the selector box allows you to choose the type \nof graph. The first 3 tabs on the main panel show the actual stock prices along with trading volumes, whereas\n the 'Comparison' tab will allow you to compare the absolute returns of the various stocks.\"),\n      \n      #Creates the input boxes for the stock tickers\n      textInput(\"symb1\", \"Stock Ticker 1\", \"SPY\"),\n      textInput(\"symb2\", \"Stock Ticker 2\", \"SPY\"),\n      textInput(\"symb3\", \"Stock Ticker 3\", \"SPY\"),\n      \n      #Allows the user to define the range of the dates\n      dateRangeInput(\"dates\", \n                     \"Date range\",\n                     start = \"2013-01-01\", \n                     end = as.character(Sys.Date())),\n      \n      #Allows the user to select the type of charts for the individual stock prices\n      selectInput(\"ChartType\", label = \"Chart Type\", \n                  choices = c(\"Line\" = \"line\", \"Bars\" = \"bars\",\n                              \"Matchsticks\" = \"matchsticks\",\n                              \"Candlesticks\" = \"candlesticks\"))\n      \n    ),\n    \n    mainPanel(\n      #Constructs the various tabs including \n      tabsetPanel(\n        tabPanel(\"Stock 1\", plotOutput(\"plot1\")),\n        tabPanel(\"Stock 2\", plotOutput(\"plot2\")),\n        tabPanel(\"Stock 3\", plotOutput(\"plot3\")),\n        tabPanel(\"Comparison\", plotOutput(\"plot4\"))\n      )\n              )\n  )\n))",
+    "created" : 1411023712065.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3509276208",
+    "id" : "534FE721",
+    "lastKnownWriteTime" : 1411208144,
+    "path" : "C:/Users/Jens/Dropbox/Documents/Coursera/Data Science Track/Developing data products/StockChart/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
